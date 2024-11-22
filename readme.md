@@ -1,16 +1,16 @@
 <h1>ShortVideoParse</h1>
 
-[//]: # (<p>)
+<p>
 
-[//]: # (<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/v/stable" alt="Latest Stable Version"></a>)
+<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/v/stable" alt="Latest Stable Version"></a>
 
-[//]: # (<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/downloads" alt="Total Downloads"></a>)
+<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/downloads" alt="Total Downloads"></a>
 
-[//]: # (<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/v/unstable" alt="Latest Unstable Version"></a>)
+<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/v/unstable" alt="Latest Unstable Version"></a>
 
-[//]: # (<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/license" alt="License"></a>)
+<a href="https://packagist.org/packages/wzj177/short-video-parse"><img src="https://poser.pugx.org/wzj177/short-video-parse/license" alt="License"></a>
 
-[//]: # (</p>)
+</p>
 
 ## 短视频去水印
  本项目是在 [VideoTools](https://github.com/smalls0098/VideoTools) 的基础上修改的，修改目的在于，之前的包里面有些接口失效，同时也对部分接口做了升级，项目部分平台不仅支持视频、封面同时支持图片集采集。
