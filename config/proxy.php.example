@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'douyin' => [
+        'video' => '{your host}/proxy-video.php',
+        'image' => '{your host}/proxy-img.php',
+    ]
+];
