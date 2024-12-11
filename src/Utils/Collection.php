@@ -12,9 +12,9 @@ use Serializable;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
- * Date：2020/6/10 - 13:32
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
+ * Date：2024/6/10 - 13:32
  **/
 class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable, Serializable
 {

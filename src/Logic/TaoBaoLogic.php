@@ -8,9 +8,9 @@ use Wzj\ShortVideoParse\Utils\CommonUtil;
 
 /**
  * 努力努力再努力！！！！！
- * Author：smalls
+ * Author：wzj、smalls
  * Github：https://github.com/smalls0098
- * Email：smalls0098@gmail.com
+ * Email：wzj177@163.com
  * Date：2020/8/13 - 22:52
  **/
 class TaoBaoLogic extends Base

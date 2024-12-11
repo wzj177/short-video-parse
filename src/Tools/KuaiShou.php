@@ -8,8 +8,8 @@ use Wzj\ShortVideoParse\Logic\H5KuaiShouLogic;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
  * Date：2020/4/27 - 0:46
  **/
 class KuaiShou extends Base implements IVideo

@@ -10,9 +10,9 @@ use Wzj\ShortVideoParse\Utils\MeiPaiUtil;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
- * Date：2020/6/10 - 14:51
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
+ * Date：2024/6/10 - 14:51
  **/
 class MeiPaiLogic extends Base
 {

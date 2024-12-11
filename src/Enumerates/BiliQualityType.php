@@ -5,8 +5,8 @@ namespace Wzj\ShortVideoParse\Enumerates;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
  * Date：2020/6/8 - 23:45
  **/
 class BiliQualityType

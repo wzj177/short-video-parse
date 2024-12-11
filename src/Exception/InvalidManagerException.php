@@ -6,8 +6,8 @@ namespace Wzj\ShortVideoParse\Exception;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
  * Date：2020/4/26 - 22:25
  **/
 class InvalidManagerException extends Exception

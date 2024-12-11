@@ -5,9 +5,9 @@ namespace Wzj\ShortVideoParse\Enumerates;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
- * Date：2020/6/10 - 12:54
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
+ * Date：2024/6/10 - 12:54
  **/
 class UserGentType
 {

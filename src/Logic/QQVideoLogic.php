@@ -9,8 +9,8 @@ use Wzj\ShortVideoParse\Utils\CommonUtil;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
  * Date：2020/7/17 - 16:16
  **/
 class QQVideoLogic extends Base

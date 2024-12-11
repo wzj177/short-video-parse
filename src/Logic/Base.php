@@ -9,9 +9,9 @@ use Wzj\ShortVideoParse\Utils\CommonUtil;
 
 /**
  * Created By 1
- * Author：smalls
- * Email：smalls0098@gmail.com
- * Date：2020/6/10 - 11:49
+ * Author：wzj、smalls
+ * Email：wzj177@163.com
+ * Date：2024/6/10 - 11:49
  **/
 class Base
 {
