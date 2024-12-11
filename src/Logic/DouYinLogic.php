@@ -53,7 +53,7 @@ class DouYinLogic extends Base
         $jsonStr = rtrim($jsonStr, ";");
         $json = json_decode($jsonStr, true);
         if (empty($json) || !isset($json["loaderData"])) {
-            throw new \Smalls\VideoTools\Exception\ErrorVideoException("无法获取视频信息");
+            throw new ErrorVideoException("无法获取视频信息");
         }
         if (strpos($this->redirectUrl, 'note') !== false) {
             $videoItemList = $json["loaderData"]["note_(id)/page"]["videoInfoRes"]['item_list'] ?? [];

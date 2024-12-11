@@ -1,10 +1,10 @@
 <?php
 
-namespace Smalls\Tests\Tools;
+namespace Wzj\ShortVideoParse\Tests\Tools;
 
 use PHPUnit\Framework\TestCase;
-use Smalls\VideoTools\Enumerates\BiliQualityType;
-use Smalls\VideoTools\VideoManager;
+use Wzj\ShortVideoParse\Enumerates\BiliQualityType;
+use Wzj\ShortVideoParse\VideoManager;
 
 class BiliTest extends TestCase
 {

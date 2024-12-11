@@ -45,7 +45,7 @@ class TouTiaoLogic extends Base
     public function setContents()
     {
         if (!$this->redirect_url && !$this->xg_pc_redirect_url && !$this->xg_h5_redirect_url) {
-            throw new \Smalls\VideoTools\Exception\ErrorVideoException("获取不到指定的内容信息");
+            throw new ErrorVideoException("获取不到指定的内容信息");
         }
 
         try {
@@ -57,6 +57,7 @@ class TouTiaoLogic extends Base
                 'Cookie' => '__ac_nonce=06757ba68005745b959ea; __ac_signature=_02B4Z6wo00f0185n9DwAAIDAnJjUJdfOevfOR.CAAJTXf6'
             ]);
 
+
             if ($this->xg_pc_redirect_url && $this->xg_h5_redirect_url && false !== strpos($xgContents, 'window.getSSRHydratedData')) {
                 return $this->setXiGuaVideoContents($xgContents);
             }
@@ -66,7 +67,7 @@ class TouTiaoLogic extends Base
         try {
             $contents = $this->get($this->redirect_url, [], [
                 'Referer' => $this->url,
-                'User-Agent' => \Smalls\VideoTools\Enumerates\UserGentType::ANDROID_USER_AGENT
+                'User-Agent' => UserGentType::ANDROID_USER_AGENT
             ]);
             return $this->setTouTiaoVideoContents($contents);
         } catch (\Throwable $e) {
@@ -76,14 +77,11 @@ class TouTiaoLogic extends Base
 
     protected function setXiGuaVideoContents($contents)
     {
-//        echo '解析西瓜视频内容信息', PHP_EOL;
-//        file_put_contents(runtime_path('toutiao55.html'), $contents);
         preg_match('/window\.getSSRHydratedData\s*=\s*function\s*\(\)\s*{[^}]*data\s*=\s*(\{.*\});/', $contents, $matches);
-        if (\Smalls\VideoTools\Utils\CommonUtil::checkEmptyMatch($matches)) {
+        if (CommonUtil::checkEmptyMatch($matches)) {
             throw new ErrorVideoException("获取不到西瓜视频指定的加密信息");
         }
         $jsonData = str_replace(":undefined", ":\"none\"", $matches[1]);
-//        file_put_contents(runtime_path('toutiao55.json'), $jsonData);
         $decodedData = json_decode($jsonData, true);
         if (empty($decodedData['anyVideo']['gidInformation']['packerData']['video']['vid'])) {
             throw new ErrorVideoException("获取不到西瓜视频vid");
@@ -115,7 +113,6 @@ class TouTiaoLogic extends Base
 
     protected function make365ygVideoUrlAndQueryByVid(string $vid): array
     {
-//       $url = "https://ib.365yg.com/video/urls/v/1/toutiao/mp4/v0313bg10004csiui27og65ka1ppq0t0?r=1733801741000&nobase64=true&s=888399196&aid=3586&logo_type=unwatermarked&vfrom=xgplayer";
         $url = "https://ib.365yg.com/video/urls/v/1/toutiao/mp4/{$vid}";
         $r = time() * 1000;
         $config = [

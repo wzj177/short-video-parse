@@ -1,8 +1,8 @@
 <?php
 
-namespace Smalls\VideoTools\Tests;
+namespace Wzj\ShortVideoParse\Tests;
 
-use Smalls\VideoTools\Traits\HttpRequest;
+use Wzj\ShortVideoParse\Traits\HttpRequest;
 
 require '../vendor/autoload.php';
 
