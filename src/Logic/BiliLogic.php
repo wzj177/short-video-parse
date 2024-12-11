@@ -26,6 +26,8 @@ class BiliLogic extends Base
 
     private $title;
 
+    private $cookie = '';
+
     /**
      * BiliLogic初始化.
      * @param string $cookie
@@ -130,12 +132,17 @@ class BiliLogic extends Base
 
     public function getVideoImage()
     {
-        return '';
+        return $this->cover;
+    }
+
+    public function getImages(): array
+    {
+        return [];
     }
 
     public function getVideoDesc()
     {
-        return '';
+        return $this->title;
     }
 
     public function getUsername()
