@@ -80,6 +80,10 @@ class XiaoHongShuLogic extends Base
     {
         if (!empty($this->contents['video']['media']['stream'])) {
             $streams = $this->contents['video']['media']['stream'];
+            if (!empty($streams['h265'])) {
+                return $streams['h265'][0]['masterUrl'] ?? '';
+            }
+
             if (!empty($streams['h264'])) {
                 return $streams['h264'][0]['masterUrl'] ?? '';
             }
