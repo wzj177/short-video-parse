@@ -63,6 +63,7 @@ class BiliLogic extends Base
 
     public function setContents()
     {
+        $this->getVideoInfo();
         $apiUrl = 'https://api.bilibili.com/x/player/playurl';
         $contents = $this->get($apiUrl, [
             'avid' => $this->aid,
@@ -79,6 +80,7 @@ class BiliLogic extends Base
             'User-Agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.14(0x17000e29) NetType/WIFI Language/zh_CN',
         ]);
         $this->contents = $contents;
+
     }
 
     /**
@@ -144,6 +146,33 @@ class BiliLogic extends Base
     public function getUserPic()
     {
         return '';
+    }
+
+
+    protected function getVideoInfo()
+    {
+        $apiUrl = 'https://api.bilibili.com/x/web-interface/view';
+        $contents = $this->get($apiUrl, [
+            'aid' => $this->getAid(),
+        ], [
+            'Cookie' => $this->cookie,
+            'Referer' => 'https://m.bilibili.com/video/av84665662',
+            'origin' => 'https://m.bilibili.com',
+            'Host' => 'api.bilibili.com',
+            'User-Agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.14(0x17000e29) NetType/WIFI Language/zh_CN',
+        ]);
+        if (!empty($contents) && $contents['code'] === 0) {
+            if (!empty($contents['data']['pic'])) {
+                $this->cover = $contents['data']['pic'];
+            } elseif (!empty($contents['data']['pages'][0]['first_frame'])) {
+                $this->cover = $contents['data']['pages'][0]['first_frame'];
+            }
+            if (!empty($contents['data']['title'])) {
+                $this->title = $contents['data']['title'];
+            } elseif (!empty($contents['data']['pages'][0]['part'])) {
+                $this->title = $contents['data']['pages'][0]['part'];
+            }
+        }
     }
 
 
