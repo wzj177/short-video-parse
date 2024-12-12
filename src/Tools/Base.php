@@ -129,4 +129,36 @@ class Base extends Common
         return $this;
     }
 
+
+    /**
+     * 二维码登录-生成登录链接
+     * @param array $params
+     * @return array|string|void|null
+     */
+    public function makeQrcodeLoginUrl(array $params = [])
+    {
+        return null;
+    }
+
+    /**
+     * 二维码登录-登录处理
+     * @param array $params
+     * @return string
+     */
+    public function qrcodeLogin(array $params = [])
+    {
+
+    }
+
+
+    /**
+     * 普通账号密码登录
+     * @param array $params
+     * @return mixed
+     */
+    public function login(array $params)
+    {
+
+    }
+
 }

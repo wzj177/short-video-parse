@@ -16,5 +16,4 @@ class ErrorVideoException extends Exception
     {
         parent::__construct("ErrorVideo : " . $message, self::ERROR_VIDEO_CODE, null);
     }
-
 }

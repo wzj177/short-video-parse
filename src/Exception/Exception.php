@@ -17,6 +17,7 @@ class Exception extends \Exception
 
     const INVALID_MANAGER_CODE = 550;
     const ERROR_VIDEO_CODE = 551;
+    const ERROR_AUTH_CODE = 401;
 
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {

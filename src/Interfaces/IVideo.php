@@ -17,4 +17,26 @@ interface IVideo
      */
     public function start(string $url): array;
 
+    /**
+     * 二维码登录-生成登录链接
+     * @param array $params
+     * @return string
+     */
+    public function makeQrcodeLoginUrl(array $params = []);
+
+    /**
+     * 二维码登录-登录处理
+     * @param array $params
+     * @return void
+     */
+    public function qrcodeLogin(array $params = []);
+
+
+    /**
+     * 普通账号密码登录
+     * @param array $params
+     * @return mixed
+     */
+    public function login(array $params);
+
 }
