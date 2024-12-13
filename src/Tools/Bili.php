@@ -131,6 +131,18 @@ class Bili extends Base implements IVideo
         return '';
     }
 
+    /**
+     * B站登录检测
+     *   状态码
+     *     86090: 二维码已扫码未确认
+     *     86101: 未扫码
+     *     0: 扫码确认
+     *     86038: 二维码已失效
+     * @param array $params
+     * @return array
+     * @throws ErrorAuthException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function qrcodeLogin(array $params = [])
     {
         if (empty($params['oauthKey'])) {
@@ -139,8 +151,11 @@ class Bili extends Base implements IVideo
 
         empty($params['gourl']) && $params['gourl'] = 'https://www.bilibili.com';
         $client = new Client();
-        $response = $client->post('https://passport.bilibili.com/qrcode/getLoginInfo', [
-            'form_params' => $params,
+        $response = $client->get('https://passport.bilibili.com/x/passport-login/web/qrcode/poll', [
+            'query' => [
+                'qrcode_key' => $params['oauthKey'],
+                'source' => 'main-fe-header'
+            ],
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'
             ]
