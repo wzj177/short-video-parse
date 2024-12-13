@@ -136,6 +136,7 @@ class Bili extends Base implements IVideo
         if (empty($params['oauthKey'])) {
             throw new ErrorAuthException("oauthKey参数为空");
         }
+
         empty($params['gourl']) && $params['gourl'] = 'https://www.bilibili.com';
         $client = new Client();
         $response = $client->post('https://passport.bilibili.com/qrcode/getLoginInfo', [
@@ -148,13 +149,10 @@ class Bili extends Base implements IVideo
         $cookies = $response->getHeaderLine('set-Cookie');
         $contents = $response->getBody()->getContents();
         $data = json_decode($contents, true);
-        if (!empty($data) && $data['status']) {
-            return [
-                'cookies' => $cookies,
-                'data' => $data['data']
-            ];
-        }
 
-        throw new ErrorAuthException("扫码登录验证失败，" . $data['message']);
+        return [
+            'cookies' => $cookies,
+            'data' => $data['data']
+        ];
     }
 }
