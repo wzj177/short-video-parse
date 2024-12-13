@@ -152,7 +152,7 @@ class Bili extends Base implements IVideo
 
         return [
             'cookies' => $cookies,
-            'data' => $data['data']
+            'data' => $data
         ];
     }
 }
