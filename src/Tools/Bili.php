@@ -109,6 +109,13 @@ class Bili extends Base implements IVideo
         return $data;
     }
 
+    /**
+     * 申请二维码URL及扫码密钥
+     * @param array $params
+     * @return array|mixed|string|void|null
+     * @throws ErrorAuthException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function makeQrcodeLoginUrl(array $params = [])
     {
         try {
@@ -164,10 +171,52 @@ class Bili extends Base implements IVideo
         $cookies = $response->getHeaderLine('set-Cookie');
         $contents = $response->getBody()->getContents();
         $data = json_decode($contents, true);
-
+        $cookieStr = '';
+        $userInfo = [];
+        if ($data['code'] === 0 && !empty($cookies)) {
+            // 获取用户信息
+            $cookieArray = $this->parseCookies($cookies);
+            foreach ($cookieArray as $key => $value) {
+                $cookieStr .= $key . '=' . $value . '; ';
+            }
+            $userInfoContents = $client->get('https://api.bilibili.com/x/web-interface/nav', [
+                'headers' => [
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
+                    'Cookie' => $cookieStr,
+                    'referer' => 'https://www.bilibili.com/'
+                ]
+            ])->getBody()->getContents();
+            $userInfoResult = json_decode($userInfoContents, true);
+            if ($userInfoResult['code'] === 0) {
+                $userInfo = $userInfoResult['data'];
+            }
+        }
         return [
-            'cookies' => $cookies,
-            'data' => $data
+            'cookies' => $cookieStr,
+            'status_info' => $data,
+            'user_info' => $userInfo
         ];
+    }
+
+    /**
+     * 解析Cookie
+     * @param $cookieString
+     * @return array
+     */
+    protected function parseCookies($cookieString)
+    {
+        $cookies = [];
+        $cookiePairs = explode(',', $cookieString);
+        foreach ($cookiePairs as $cookiePair) {
+            $cookiePair = trim($cookiePair);
+            $cookieParts = explode('=', $cookiePair, 2);
+            if (count($cookieParts) === 2) {
+                $value = $cookieParts[1];
+                $value = explode(';', $value);
+                $cookies[$cookieParts[0]] = urldecode($value[0]);
+            }
+        }
+
+        return $cookies;
     }
 }
