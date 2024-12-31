@@ -15,7 +15,6 @@ use Wzj\ShortVideoParse\Utils\CommonUtil;
  **/
 class WeiBoLogic extends Base
 {
-
     private $statusId;
     private $contents;
 
@@ -23,14 +22,14 @@ class WeiBoLogic extends Base
     {
         preg_match('/(\d+:\d+)/i', $this->url, $matches);
         if (!empty($matches[1])) {
-            $this->fid = $matches[1];
+            $this->statusId = $matches[1];
         } else {
             preg_match('/(\d+\/\S+)/i', $this->url, $matches);
             if (!empty($matches[1])) {
-                $this->fid = $matches[1];
+                $this->statusId = $matches[1];
             }
         }
-        if (empty($this->fid)) {
+        if (empty($this->statusId)) {
             throw new ErrorVideoException("获取不到fid参数信息");
         }
     }
@@ -114,7 +113,7 @@ class WeiBoLogic extends Base
      */
     public function getFid()
     {
-        return $this->fid;
+        return $this->statusId;
     }
 
     public function getUrl(): string
@@ -124,7 +123,7 @@ class WeiBoLogic extends Base
 
     public function getVideoUrl()
     {
-        if (strpos($this->fid, ':') !== false) {
+        if (strpos($this->statusId, ':') !== false) {
             $playInfo = $this->contents;
             if (!empty($playInfo['urls'])) {
                 if (isset($playInfo['urls']['高清 1080P'])) {
@@ -143,7 +142,7 @@ class WeiBoLogic extends Base
                     return false === strpos($playInfo['urls']['流畅 360P'], 'http') ? 'https:' . $playInfo['urls']['流畅 360P'] : $playInfo['urls']['流畅 360P'];
                 }
             }
-        } else if (strpos($this->fid, '/') !== false) {
+        } else if (strpos($this->statusId, '/') !== false) {
             if (!empty($this->contents['page_info']['media_info'])) {
                 if (!empty($this->contents['page_info']['media_info']['stream_url_hd'])) {
                     return $this->contents['page_info']['media_info']['stream_url_hd'];
@@ -160,12 +159,12 @@ class WeiBoLogic extends Base
 
     public function getVideoImage()
     {
-        if (strpos($this->fid, ':') !== false) {
+        if (strpos($this->statusId, ':') !== false) {
             $playInfo = $this->contents;
             if (isset($playInfo['cover_image'])) {
                 return false === strpos($playInfo['cover_image'], 'http') ? 'https:' . $playInfo['cover_image'] : $playInfo['cover_image'];
             }
-        } else if (strpos($this->fid, '/') !== false) {
+        } else if (strpos($this->statusId, '/') !== false) {
             return $this->contents['page_info']['page_pic'] ?? '';
         }
 
@@ -175,9 +174,9 @@ class WeiBoLogic extends Base
     public function getImages(): array
     {
         $images = [];
-        if (strpos($this->fid, ':') !== false) {
+        if (strpos($this->statusId, ':') !== false) {
             return [];
-        } else if (strpos($this->fid, '/') !== false) {
+        } else if (strpos($this->statusId, '/') !== false) {
             if (empty($this->contents['page_info']['media_info']) && !empty($this->contents['pic_infos'])) {
                 $picInfos = array_values($this->contents['pic_infos']);
                 foreach ($picInfos as $picInfo) {
@@ -199,12 +198,12 @@ class WeiBoLogic extends Base
 
     public function getVideoDesc()
     {
-        if (strpos($this->fid, ':') !== false) {
+        if (strpos($this->statusId, ':') !== false) {
             $playInfo = $this->contents;
             if (!empty($playInfo['text'])) {
                 return str_replace("  ", "", strip_tags($playInfo['text']));
             }
-        } else if (strpos($this->fid, '/') !== false) {
+        } else if (strpos($this->statusId, '/') !== false) {
             return $this->contents['text_raw'] ?? '';
         }
 
